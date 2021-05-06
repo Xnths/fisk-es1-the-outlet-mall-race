@@ -1,0 +1,41 @@
+h1, h2, p, spam, label, li{
+    color: white;
+    font-family: var(--font-default);
+}
+
+h1{
+    font-size: 3em;
+    display: inline;
+    text-align: center;
+}
+
+h2{
+    font-size: 2.5em;
+    display:inline;
+}
+
+strong{
+    background: white;
+    border-bottom: 2px solid grey;
+    padding: 0.05em 0.15em;
+    color: grey;
+}
+
+p, spam{
+    padding: 0.15em 0;
+}
+
+.copyright{
+    font-size: 0.8em;
+    padding: 0;
+    margin: 1em;
+}
+
+spam{
+    font-size: 2em;
+}
+
+a{
+    color: var(--light-blue);
+    text-decoration: none;
+}
