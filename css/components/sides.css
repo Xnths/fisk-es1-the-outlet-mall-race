@@ -1,0 +1,15 @@
+.active-turn{
+    background: white;
+}
+#team-one-side{
+    height: 90vh;
+    width: 50vw;
+    display: inline-block;
+}
+#team-two-side{
+    height: 90vh;
+    width:50vw;
+    position: absolute;
+    right: 0px;
+    display: inline-block;
+}
