@@ -7,6 +7,9 @@ const teamTwoScoreBoard = document.getElementById('team-two-score');
 const teamOneDraw = document.getElementById('team-one-draw');
 const teamTwoDraw = document.getElementById('team-two-draw');
 
+const teamOneCard = document.getElementById('team-one-card');
+const teamTwoCard = document.getElementById('team-two-card');
+
 const teamOneRandomizer = document.getElementById('team-one-randomizer');
 const teamTwoRandomizer = document.getElementById('team-two-randomizer');
 
@@ -15,6 +18,7 @@ const teamTwoQuestion = document.getElementById('team-two-question');
 
 const teamOneCorrect = document.getElementById('team-one-correct');
 const teamOneWrong = document.getElementById('team-one-wrong');
+
 const teamTwoCorrect = document.getElementById('team-two-correct');
 const teamTwoWrong = document.getElementById('team-two-wrong');
 
@@ -76,8 +80,8 @@ const activeTurn = 'active-turn';
 
 var points = 0;
 
-function getRandomNumber() {
-    points = Math.round(Math.random() * 10);
+function setPoints() {
+    points = Math.floor(Math.random() * 4) + 1;
 }
 
 function getRandomQuestion() {
@@ -87,18 +91,25 @@ function getRandomQuestion() {
 }
 
 teamOneDraw.addEventListener('click', () => {
-    getRandomNumber();
+    setPoints();
+
+    teamOneCard.classList.remove('invisible')
 
     teamOneSide.classList.add(activeTurn);
     teamTwoSide.classList.remove(activeTurn);
 
     teamOneQuestion.innerHTML = getRandomQuestion();
+
     teamOneRandomizer.innerHTML = points;
 
-    teamOneScoreBoard.innerHTML = teamOneScore;
 })
 teamOneCorrect.addEventListener('click', () => {
     teamOneScore = teamOneScore + points;
+
+    teamOneCard.classList.add('invisible');
+    teamOneSide.classList.remove(activeTurn);
+    teamOneScoreBoard.innerHTML = teamOneScore;
+
 })
 teamTwoDraw.addEventListener('click', () => {
     teamTwoQuestion.innerHTML = "Clicked";
