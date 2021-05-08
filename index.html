@@ -18,24 +18,28 @@
     </header>
     <main>
 
-        <div id="team-one-side" class="active-turn">
-            <p id="team-one-score"></p>
-            <button id="team-one-draw">Draw</button>
-            <div id="team-one-card" class='invisible card'>
-                <span id="team-one-points"></span>
-                <p id="team-one-question"></p>
-                <button id="team-one-correct">Correct</button>
-                <button id="team-one-wrong">Wrong</button>
+        <div id="team-one-side" class="active-turn side">
+            <p id="team-one-score" class='score'>0</p>
+            <button id="team-one-draw" class='draw'>Draw</button>
+            <div id="team-one-card" class='invisible card container'>
+                <p id="team-one-points" class='points'></p>
+                <p id="team-one-question" class='question'></p>
+                <div class="alternatives">
+                    <button id="team-one-correct" class='correct'>Correct</button>
+                    <button id="team-one-wrong">Wrong</button>
+                </div>
             </div>
         </div>
-        <div id="team-two-side">
-            <p id="team-two-score"></p>
-            <button id="team-two-draw" disabled>Draw</button>
-            <div id="team-two-card" class='invisible card'>
-                <span id="team-two-ṕoints"></span>
-                <p id="team-two-question"></p>
-                <button id="team-two-correct">Correct</button>
-                <button id="team-two-wrong">Wrong</button>
+        <div id="team-two-side" class="side">
+            <p id="team-two-score" class='score'>0</p>
+            <button id="team-two-draw" class='draw'>Draw</button>
+            <div id="team-two-card" class='invisible card container'>
+                <p id="team-two-points" class='points'></p>
+                <p id="team-two-question" class='question'></p>
+                <div class="alternatives">
+                    <button id="team-two-correct" class='correct'>Correct</button>
+                    <button id="team-two-wrong">Wrong</button>
+                </div>
             </div>
         </div>
 

@@ -22,6 +22,8 @@ const teamOneWrong = document.getElementById('team-one-wrong');
 const teamTwoCorrect = document.getElementById('team-two-correct');
 const teamTwoWrong = document.getElementById('team-two-wrong');
 
+teamTwoDraw.disabled = true;
+
 var teamOneScore = 0;
 var teamTwoScore = 0;
 
@@ -32,9 +34,11 @@ var questions = [
     "Do you have pizza for dinner on Saturday nights?",
     "Does your best friend like sushi?",
     "What do you and your friends do on Friday nights?",
-    "What hat time is it?",
-    "What time is it?",
-    "What time is it?",
+    "What time is it? 5:45",
+    "What time is it? 7:15",
+    "What time is it? 8:55",
+    "What time is it? 3:00",
+    "What time is it? 2:10",
     "Does your father need to get up early on Sundays?",
     "Are you an only child?",
     "Is your family big?",
@@ -82,26 +86,26 @@ var bufferPoints = 0;
 var turn = 1;
 
 function willResultZero(teamScore) {
-    if (teamScore - bufferPoints < 0) {
-        teamScore = 0;
-        return;
-    }
-    teamScore = teamScore - bufferPoints;
+    return (teamScore - bufferPoints) < 0;
 }
 
 function changeTurn() {
     teamOneScoreBoard.innerHTML = teamOneScore;
     teamTwoScoreBoard.innerHTML = teamTwoScore;
 
-    console.log(bufferPoints)
+    if (teamOneScore >= 21) {
+        alert('Team One Wins!');
+        location.reload();
+    }
+    if (teamTwoScore >= 21) {
+        alert('Team Two Wins!');
+        location.reload();
+    }
 
-    console.log(teamOneScore);
-    console.log(teamTwoScore);
     if (turn == 1) {
         teamOneSide.classList.remove(activeTurn);
         teamTwoSide.classList.add(activeTurn);
 
-        teamOneDraw.disabled = true;
         teamTwoDraw.disabled = false;
 
         teamOneCard.classList.add('invisible');
@@ -112,7 +116,6 @@ function changeTurn() {
         teamTwoSide.classList.remove(activeTurn);
 
         teamOneDraw.disabled = false;
-        teamTwoDraw.disabled = true;
 
         teamTwoCard.classList.add('invisible');
 
@@ -133,9 +136,12 @@ function getRandomQuestion() {
 }
 
 teamOneDraw.addEventListener('click', () => {
+    teamOneDraw.disabled = true;
+
     create(teamOneCard);
 
     teamOneQuestion.innerHTML = getRandomQuestion();
+    teamOnePoints.innerHTML = bufferPoints;
 })
 teamOneCorrect.addEventListener('click', () => {
     teamOneScore += bufferPoints;
@@ -143,15 +149,22 @@ teamOneCorrect.addEventListener('click', () => {
     changeTurn();
 })
 teamOneWrong.addEventListener('click', () => {
-    willResultZero(teamOneScore);
+    if (willResultZero(teamOneScore)) {
+        teamOneScore = 0;
+    } else {
+        teamOneScore -= bufferPoints;
+    }
 
     changeTurn();
 })
 
 teamTwoDraw.addEventListener('click', () => {
+    teamTwoDraw.disabled = true;
+
     create(teamTwoCard);
 
     teamTwoQuestion.innerHTML = getRandomQuestion();
+    teamTwoPoints.innerHTML = bufferPoints;
 })
 teamTwoCorrect.addEventListener('click', () => {
     teamTwoScore += bufferPoints;
@@ -159,7 +172,10 @@ teamTwoCorrect.addEventListener('click', () => {
     changeTurn();
 })
 teamTwoWrong.addEventListener('click', () => {
-    willResultZero(teamTwoScore);
-
+    if (willResultZero(teamTwoScore)) {
+        teamTwoScore = 0;
+    } else {
+        teamTwoScore -= bufferPoints;
+    }
     changeTurn();
 })

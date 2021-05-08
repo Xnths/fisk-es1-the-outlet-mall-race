@@ -1,4 +1,22 @@
 .card{
-    border-bottom: 2px solid gray;
-    background: red;
+    border-bottom: 4px solid var(--red);
+    background-color: #F94F4F;
+}
+.question{
+    text-align: center;
+    font-size: 2em;
+}
+.points{
+    text-align: center;
+    font-size: 2em;
+    background-color: var(--red);
+}
+.alternatives{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.correct{
+    background-color:rgb(23, 255, 71);
+    border-bottom: 2px solid rgb(1, 166, 34);
 }

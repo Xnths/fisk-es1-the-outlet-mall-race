@@ -6,7 +6,9 @@
 @import url('./components/structures.css');
 @import url('./components/texts.css');
 @import url('./components/visual-identity.css');
-@import url('./components/sides.css');
 @import url('./components/cards.css');
+@import url('./components/score.css');
+@import url('./components/draw.css');
 
 @import url('./layout/states.css');
+@import url('./layout/sides.css');
