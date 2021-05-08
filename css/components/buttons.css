@@ -16,3 +16,8 @@ button:active{
     top:0.2em;
     opacity: 0.9;
 }
+
+button:disabled{
+    background: lightgray;
+    border-bottom: 2px solid gray;
+}

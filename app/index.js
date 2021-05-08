@@ -10,8 +10,8 @@ const teamTwoDraw = document.getElementById('team-two-draw');
 const teamOneCard = document.getElementById('team-one-card');
 const teamTwoCard = document.getElementById('team-two-card');
 
-const teamOneRandomizer = document.getElementById('team-one-randomizer');
-const teamTwoRandomizer = document.getElementById('team-two-randomizer');
+const teamOnePoints = document.getElementById('team-one-points');
+const teamTwoPoints = document.getElementById('team-two-points');
 
 const teamOneQuestion = document.getElementById('team-one-question');
 const teamTwoQuestion = document.getElementById('team-two-question');
@@ -78,10 +78,52 @@ var questions = [
 
 const activeTurn = 'active-turn';
 
-var points = 0;
+var bufferPoints = 0;
+var turn = 1;
 
-function setPoints() {
-    points = Math.floor(Math.random() * 4) + 1;
+function willResultZero(teamScore) {
+    if (teamScore - bufferPoints < 0) {
+        teamScore = 0;
+        return;
+    }
+    teamScore = teamScore - bufferPoints;
+}
+
+function changeTurn() {
+    teamOneScoreBoard.innerHTML = teamOneScore;
+    teamTwoScoreBoard.innerHTML = teamTwoScore;
+
+    console.log(bufferPoints)
+
+    console.log(teamOneScore);
+    console.log(teamTwoScore);
+    if (turn == 1) {
+        teamOneSide.classList.remove(activeTurn);
+        teamTwoSide.classList.add(activeTurn);
+
+        teamOneDraw.disabled = true;
+        teamTwoDraw.disabled = false;
+
+        teamOneCard.classList.add('invisible');
+
+        turn = 2;
+    } else if (turn == 2) {
+        teamOneSide.classList.add(activeTurn);
+        teamTwoSide.classList.remove(activeTurn);
+
+        teamOneDraw.disabled = false;
+        teamTwoDraw.disabled = true;
+
+        teamTwoCard.classList.add('invisible');
+
+        turn = 1;
+    }
+}
+
+function create(teamCard) {
+    bufferPoints = Math.floor(Math.random() * 4) + 1;
+
+    teamCard.classList.remove('invisible');
 }
 
 function getRandomQuestion() {
@@ -91,44 +133,33 @@ function getRandomQuestion() {
 }
 
 teamOneDraw.addEventListener('click', () => {
-    setPoints();
-
-    teamOneCard.classList.remove('invisible')
-
-    teamOneSide.classList.add(activeTurn);
-    teamTwoSide.classList.remove(activeTurn);
+    create(teamOneCard);
 
     teamOneQuestion.innerHTML = getRandomQuestion();
-
-    teamOneRandomizer.innerHTML = points;
-
 })
 teamOneCorrect.addEventListener('click', () => {
-    teamOneScore = teamOneScore + points;
+    teamOneScore += bufferPoints;
 
-    teamOneCard.classList.add('invisible');
-    teamOneSide.classList.remove(activeTurn);
-    teamOneScoreBoard.innerHTML = teamOneScore;
-
+    changeTurn();
 })
+teamOneWrong.addEventListener('click', () => {
+    willResultZero(teamOneScore);
+
+    changeTurn();
+})
+
 teamTwoDraw.addEventListener('click', () => {
-    teamTwoQuestion.innerHTML = "Clicked";
-    teamTwoRandomizer.innerHTML = getRandomNumber();
+    create(teamTwoCard);
+
+    teamTwoQuestion.innerHTML = getRandomQuestion();
 })
+teamTwoCorrect.addEventListener('click', () => {
+    teamTwoScore += bufferPoints;
 
-document.addEventListener('keydown', () => {
-    teamOneSide.classList.add(activeTurn);
-    teamTwoSide.classList.remove(activeTurn);
+    changeTurn();
+})
+teamTwoWrong.addEventListener('click', () => {
+    willResultZero(teamTwoScore);
 
-    teamOneScoreBoard.innerHTML = teamOneScore;
-
-    teamOneScore++;
-});
-document.addEventListener('keyup', () => {
-    teamOneSide.classList.remove(activeTurn);
-    teamTwoSide.classList.add(activeTurn);
-
-    teamTwoScoreBoard.innerHTML = teamTwoScore;
-
-    teamTwoScore++;
-});
+    changeTurn();
+})

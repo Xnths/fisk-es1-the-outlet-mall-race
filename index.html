@@ -18,11 +18,11 @@
     </header>
     <main>
 
-        <div id="team-one-side">
+        <div id="team-one-side" class="active-turn">
             <p id="team-one-score"></p>
             <button id="team-one-draw">Draw</button>
-            <div id="team-one-card" class='invisible'>
-                <span id="team-one-randomizer"></span>
+            <div id="team-one-card" class='invisible card'>
+                <span id="team-one-points"></span>
                 <p id="team-one-question"></p>
                 <button id="team-one-correct">Correct</button>
                 <button id="team-one-wrong">Wrong</button>
@@ -30,11 +30,13 @@
         </div>
         <div id="team-two-side">
             <p id="team-two-score"></p>
-            <button id="team-two-draw">Draw</button>
-            <span id="team-two-randomizer"></span>
-            <p id="team-two-question"></p>
-            <button id="team-two-correct">Correct</button>
-            <button id="team-two-wrong">Wrong</button>
+            <button id="team-two-draw" disabled>Draw</button>
+            <div id="team-two-card" class='invisible card'>
+                <span id="team-two-ṕoints"></span>
+                <p id="team-two-question"></p>
+                <button id="team-two-correct">Correct</button>
+                <button id="team-two-wrong">Wrong</button>
+            </div>
         </div>
 
     </main>
