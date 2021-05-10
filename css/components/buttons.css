@@ -4,10 +4,7 @@ button{
     border-bottom: 2px solid red;
     color: white;
     font-family: var(--font-default);
-    padding: 0.5em 1em;
-    display: flex;
-    justify-content: space-around;
-    width: 30%;
+    padding: 0.5em 3em;
     margin: 1em 0;
 }
 
@@ -15,4 +12,9 @@ button:active{
     position:relative;
     top:0.2em;
     opacity: 0.9;
+}
+
+button:disabled{
+    background: lightgray;
+    border-bottom: 2px solid gray;
 }

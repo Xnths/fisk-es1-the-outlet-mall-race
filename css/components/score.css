@@ -1,0 +1,6 @@
+.score{
+    text-align: center;
+    font-size: 5rem;
+    background-color: #F94F4F;
+    border-bottom: 2px solid var(--red);
+}
